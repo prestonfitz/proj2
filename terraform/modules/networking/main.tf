@@ -41,7 +41,7 @@ resource "aws_subnet" "donuteast2b_private_sn" {
   vpc_id                   = aws_vpc.account_vpc.id
   cidr_block               = "10.0.2.0/24"
   availability_zone        = "us-east-2b"
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = true
   tags = { Name = "donut-private-sn" }
 }
 
@@ -50,7 +50,7 @@ resource "aws_subnet" "donuteast2a_private_sn" {
   vpc_id                   = aws_vpc.account_vpc.id
   cidr_block               = "10.0.3.0/24"
   availability_zone        = "us-east-2a"
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = true
   tags = { Name = "donut-private-sn2" }
 }
 
@@ -98,6 +98,16 @@ NACLs Configuration
 #     protocol   = "tcp"
 #     from_port  = 443
 #     to_port    = 443
+#     cidr_block = "0.0.0.0/0"
+#     action     = "allow"
+#   }
+
+#   # Default Egress for all traffic
+#   ingress {
+#     rule_no    = 102
+#     protocol   = "-1"
+#     from_port  = 0
+#     to_port    = 0
 #     cidr_block = "0.0.0.0/0"
 #     action     = "allow"
 #   }
@@ -152,6 +162,16 @@ NACLs Configuration
 #     protocol   = "tcp"
 #     from_port  = 3306  # MySQL default port, adjust as needed
 #     to_port    = 3306
+#     cidr_block = "0.0.0.0/0"
+#     action     = "allow"
+#   }
+
+#   # Default Egress for all traffic
+#   ingress {
+#     rule_no    = 102
+#     protocol   = "-1"
+#     from_port  = 0
+#     to_port    = 0
 #     cidr_block = "0.0.0.0/0"
 #     action     = "allow"
 #   }
